@@ -28,7 +28,7 @@ var Book = React.createClass({displayName: 'Book',
     render: function () {
         var style = {
             padding: '5px',
-            'background-color': 'orange',
+            backgroundColor: 'yellow',
             margin: '5px'
         };
 
