@@ -3,6 +3,11 @@
 'use strict';
 
 var Quiz = React.createClass({displayName: 'Quiz',
+
+    propTypes: {
+        books: React.PropTypes.array.isRequired
+    },
+
     render: function() {
         return (
             React.DOM.div(null, 
@@ -15,6 +20,11 @@ var Quiz = React.createClass({displayName: 'Quiz',
 });
 
 var Book = React.createClass({displayName: 'Book',
+
+    propTypes: {
+        title: React.PropTypes.string.isRequired
+    },
+
     render: function () {
         return (
             React.DOM.div(null, 
