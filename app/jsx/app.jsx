@@ -9,10 +9,7 @@ var Quiz = React.createClass({
     },
 
     getInitialState: function () {
-        return {
-            author: this.props.data[0],
-            books: this.props.data[0].books
-        };
+        return this.props.data.init();
     },
 
     render: function() {
@@ -75,7 +72,7 @@ var data = [
     },
     {
         name: 'Sigmunnd Freud',
-        imgSrc: 'sigmund-frued.jpg',
+        imgSrc: 'sigmund-freud.jpg',
         books: [
             'Jokes and Their Relation to the Unconscious',
             'Civilization and Its Discontents',
@@ -104,6 +101,23 @@ var data = [
         books: ['Huckleberry Finn', 'Tom Sawyer', 'A Conecticut Yankee at King Arthur\'s Court']
     }
 ];
+
+data.init = function () {
+    var books = _.shuffle(this.reduce(function (p, c, i) {
+        return p.concat(c.books);
+    }, [])).slice(0, 4);
+
+    var answer = books[_.random(books.length - 1)];
+
+    return {
+        books: books,
+        author: _.find(this, function (author) {
+            return author.books.some(function (title) {
+                return title === answer;
+            });
+        })
+    };
+};
 
 
 React.renderComponent(
