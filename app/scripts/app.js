@@ -26,9 +26,15 @@ var Book = React.createClass({displayName: 'Book',
     },
 
     render: function () {
+        var style = {
+            padding: '5px',
+            'background-color': 'orange',
+            margin: '5px'
+        };
+
         return (
             React.DOM.div(null, 
-                React.DOM.h4( {style:{ padding: '5px', 'background-color': 'orange', margin: '5px' }},  this.props.title )
+                React.DOM.h4( {style: style },  this.props.title )
             )
         );
     }
