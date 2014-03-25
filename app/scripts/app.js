@@ -10,7 +10,7 @@ var Quiz = React.createClass({displayName: 'Quiz',
 
     render: function() {
         return (
-            React.DOM.div(null, 
+            React.DOM.ul(null, 
                  this.props.books.map(function (book) {
                     return Book( {title: book } )
                 })
@@ -26,16 +26,8 @@ var Book = React.createClass({displayName: 'Book',
     },
 
     render: function () {
-        var style = {
-            padding: '5px',
-            backgroundColor: 'yellow',
-            margin: '5px'
-        };
-
         return (
-            React.DOM.div(null, 
-                React.DOM.h4( {style: style },  this.props.title )
-            )
+            React.DOM.li(null,  this.props.title )
         );
     }
 });

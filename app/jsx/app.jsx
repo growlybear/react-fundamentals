@@ -10,11 +10,11 @@ var Quiz = React.createClass({
 
     render: function() {
         return (
-            <div>
+            <ul>
                 { this.props.books.map(function (book) {
                     return <Book title={ book } />
                 })}
-            </div>
+            </ul>
         );
     }
 });
@@ -26,16 +26,8 @@ var Book = React.createClass({
     },
 
     render: function () {
-        var style = {
-            padding: '5px',
-            backgroundColor: 'yellow',
-            margin: '5px'
-        };
-
         return (
-            <div>
-                <h4 style={ style }>{ this.props.title }</h4>
-            </div>
+            <li>{ this.props.title }</li>
         );
     }
 });
