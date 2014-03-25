@@ -28,11 +28,11 @@ var Book = React.createClass({displayName: 'Book',
     render: function () {
         return (
             React.DOM.div(null, 
-                React.DOM.h4(null,  this.props.title )
+                React.DOM.h4( {style:{ padding: '5px', 'background-color': 'orange', margin: '5px' }},  this.props.title )
             )
         );
     }
-})
+});
 
 React.renderComponent(
     Quiz( {books:[
