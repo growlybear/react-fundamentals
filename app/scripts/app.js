@@ -5,15 +5,28 @@
 var Quiz = React.createClass({displayName: 'Quiz',
 
     propTypes: {
-        books: React.PropTypes.array.isRequired
+        data: React.PropTypes.array.isRequired
+    },
+
+    getInitialState: function () {
+        return {
+            author: this.props.data[0],
+            books: this.props.data[0].books
+        };
     },
 
     render: function() {
         return (
-            React.DOM.ul(null, 
-                 this.props.books.map(function (book) {
-                    return Book( {title: book } )
-                })
+            React.DOM.div( {className:"row"}, 
+                React.DOM.div( {className:"col-md-4 author"}, 
+                    React.DOM.img( {src: 'images/authors/' + this.state.author.imgSrc } )
+                ),
+                React.DOM.div( {className:"col-md-7"}, 
+                     this.state.books.map(function (book) {
+                        return Book( {title: book } )
+                    }, this )
+                ),
+                React.DOM.div( {className:"col-md-1"})
             )
         );
     }
@@ -27,7 +40,7 @@ var Book = React.createClass({displayName: 'Book',
 
     render: function () {
         return (
-            React.DOM.li(null,  this.props.title )
+            React.DOM.a( {href:"#", className:"bg-info title"},  this.props.title )
         );
     }
 });
@@ -35,8 +48,8 @@ var Book = React.createClass({displayName: 'Book',
 
 var data = [
     {
-        name: 'Jane Austin',
-        imgSrc: 'jane-austin.jpg',
+        name: 'Jane Austen',
+        imgSrc: 'jane-austen.jpg',
         books: [
             'Pride and Prejudice',
             'Sense and Sensibility',
@@ -94,9 +107,6 @@ var data = [
 
 
 React.renderComponent(
-    Quiz( {books:[
-        'The Lord of the Rings',
-        'Moby Dick'
-    ]} ),
+    Quiz( {data: data } ),
     document.getElementById('app')
 );
