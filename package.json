@@ -1,0 +1,12 @@
+{
+  "name": "react-fundamentals",
+  "version": "0.0.1",
+  "description": "PluralSight course by Liam McLennan",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michael Allan <michaelallan@optushome.com.au>",
+  "license": "ISC"
+}
