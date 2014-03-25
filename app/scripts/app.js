@@ -2,7 +2,7 @@
 
 'use strict';
 
-var HelloWorld = React.createClass({
+var HelloWorld = React.createClass({displayName: 'HelloWorld',
     getInitialState: function() {
         return {message: 'Hello World!'};
     },
@@ -11,12 +11,12 @@ var HelloWorld = React.createClass({
     },
     render: function() {
         return (
-            <h1 onClick={ this.goodbye }>{ this.state.message }</h1>
+            React.DOM.h1( {onClick: this.goodbye },  this.state.message )
         );
     }
 });
 
 React.renderComponent(
-    <HelloWorld />,
+    HelloWorld(null ),
     document.getElementById('app')
 );
