@@ -2,21 +2,32 @@
 
 'use strict';
 
-var HelloWorld = React.createClass({displayName: 'HelloWorld',
-    getInitialState: function() {
-        return {message: 'Hello World!'};
-    },
-    goodbye: function(event) {
-        this.setState({message: 'Goodbye World.'});
-    },
+var Quiz = React.createClass({displayName: 'Quiz',
     render: function() {
         return (
-            React.DOM.h1( {onClick: this.goodbye },  this.state.message )
+            React.DOM.div(null, 
+                 this.props.books.map(function (book) {
+                    return Book( {title: book } )
+                })
+            )
         );
     }
 });
 
+var Book = React.createClass({displayName: 'Book',
+    render: function () {
+        return (
+            React.DOM.div(null, 
+                React.DOM.h4(null,  this.props.title )
+            )
+        );
+    }
+})
+
 React.renderComponent(
-    HelloWorld(null ),
+    Quiz( {books:[
+        'The Lord of the Rings',
+        'Moby Dick'
+    ]} ),
     document.getElementById('app')
 );
