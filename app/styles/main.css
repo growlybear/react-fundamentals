@@ -25,7 +25,8 @@ body {
 
 .jumbotron {
   background-color: #ccc;
-  margin-bottom: 60px;
+  margin-bottom: 35px;
+  padding-bottom: 25px;
 }
 
 .browsehappy {
@@ -43,8 +44,8 @@ body {
   padding-top: 45px;
 }
 
-.author {
-  overflow: hidden;
+.authorImage {
+  width: 360px;
 }
 
 .title {
@@ -54,7 +55,7 @@ body {
 }
 
 .pass {
-  background-color: green;
+  background-color: #5cb85c;
 }
 
 .fail {

@@ -31,26 +31,35 @@ var Quiz = React.createClass({
     render: function() {
         return (
             <div className="row">
+
                 <div className="col-md-4 author">
-                    <img src={ 'images/authors/' + this.state.author.imgSrc } />
+                    <img src={ 'images/authors/' + this.state.author.imgSrc }
+                        className="authorImage"
+                    />
                 </div>
+
                 <div className="col-md-7">
 
                     {   this.state.books.map(function (book) {
                             return <Book title={ book } onBookSelected={ this.handleBookSelected } />
                         }, this )
                     }
-
-                    {   this.state.showContinue ? (
-                            <button type="button" onClick={ this.handleContinue }
-                                className="btn btn-success pull-right">New Game
-                            </button>
-                        ) : <span className="noContinue" />
-                    }
+                    <button type="button" className="btn btn-default pull-right">Create Quiz</button>
 
                 </div>
 
-                <div style={{ height: '260px' }} className={ "col-md-1 " + this.state.bgClass }></div>
+                <div className="col-md-1">
+
+                    <div style={{ height: '260px', marginBottom: '20px' }} className={ this.state.bgClass }></div>
+
+                    {   this.state.showContinue ? (
+                            <button type="button" onClick={ this.handleContinue }
+                                style={{ width: '100%'}}
+                                className="btn btn-success">Reset
+                            </button>
+                        ) : <span className="noContinue" />
+                    }
+                </div>
             </div>
         );
     }

@@ -31,26 +31,35 @@ var Quiz = React.createClass({displayName: 'Quiz',
     render: function() {
         return (
             React.DOM.div( {className:"row"}, 
+
                 React.DOM.div( {className:"col-md-4 author"}, 
-                    React.DOM.img( {src: 'images/authors/' + this.state.author.imgSrc } )
+                    React.DOM.img( {src: 'images/authors/' + this.state.author.imgSrc, 
+                        className:"authorImage"}
+                    )
                 ),
+
                 React.DOM.div( {className:"col-md-7"}, 
 
                        this.state.books.map(function (book) {
                             return Book( {title: book,  onBookSelected: this.handleBookSelected } )
                         }, this ),
                     
-
-                       this.state.showContinue ? (
-                            React.DOM.button( {type:"button", onClick: this.handleContinue, 
-                                className:"btn btn-success pull-right"}, "New Game "
-                            )
-                        ) : React.DOM.span( {className:"noContinue"} )
-                    
+                    React.DOM.button( {type:"button", className:"btn btn-default pull-right"}, "Create Quiz")
 
                 ),
 
-                React.DOM.div( {style:{ height: '260px' }, className: "col-md-1 " + this.state.bgClass })
+                React.DOM.div( {className:"col-md-1"}, 
+
+                    React.DOM.div( {style:{ height: '260px', marginBottom: '20px' }, className: this.state.bgClass }),
+
+                       this.state.showContinue ? (
+                            React.DOM.button( {type:"button", onClick: this.handleContinue, 
+                                style:{ width: '100%'},
+                                className:"btn btn-success"}, "Reset "
+                            )
+                        ) : React.DOM.span( {className:"noContinue"} )
+                    
+                )
             )
         );
     }
