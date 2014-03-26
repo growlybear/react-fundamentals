@@ -121,7 +121,7 @@ var data = [
         imgSrc: 'william-shakespeare.jpg',
         books: [
             'King Lear',
-            'A Midsommer Night\'s Dream',
+            'A Midsummer Night\'s Dream',
             'Hamlet',
             'Richard III',
             'The Comedy of Errors'
