@@ -156,8 +156,12 @@ data.init = function () {
     };
 };
 
-
-React.renderComponent(
-    <Quiz data={ data } />,
-    document.getElementById('app')
-);
+// Initialise the app in the default route
+routie({
+    '': function () {
+        React.renderComponent(
+            <Quiz data={ data } />,
+            document.getElementById('app')
+        );
+    }
+});
