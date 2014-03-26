@@ -52,3 +52,11 @@ body {
   margin-bottom: 20px;
   padding: 15px 20px;
 }
+
+.pass {
+  background-color: green;
+}
+
+.fail {
+  background-color: red;
+}

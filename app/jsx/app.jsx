@@ -9,12 +9,23 @@ var Quiz = React.createClass({
     },
 
     getInitialState: function () {
-        return this.props.data.init();
+        return _.extend({
+            bgClass: 'neutral',
+            showContinue: false
+        }, this.props.data.init());
     },
 
     handleBookSelected: function (title) {
         var isCorrect = this.state.checkAnswer(title);
-        alert(isCorrect);
+        this.setState({
+            bgClass: isCorrect ? 'pass' : 'fail',
+            showContinue: isCorrect
+        });
+    },
+
+    handleContinue: function () {
+        // discard current game and start a new one
+        this.setState(this.getInitialState());
     },
 
     render: function() {
@@ -24,11 +35,22 @@ var Quiz = React.createClass({
                     <img src={ 'images/authors/' + this.state.author.imgSrc } />
                 </div>
                 <div className="col-md-7">
-                    { this.state.books.map(function (book) {
-                        return <Book title={ book } onBookSelected={ this.handleBookSelected } />
-                    }, this )}
+
+                    {   this.state.books.map(function (book) {
+                            return <Book title={ book } onBookSelected={ this.handleBookSelected } />
+                        }, this )
+                    }
+
+                    {   this.state.showContinue ? (
+                            <button type="button" onClick={ this.handleContinue }
+                                className="btn btn-success pull-right">New Game
+                            </button>
+                        ) : <span className="noContinue" />
+                    }
+
                 </div>
-                <div className="col-md-1"></div>
+
+                <div style={{ height: '260px' }} className={ "col-md-1 " + this.state.bgClass }></div>
             </div>
         );
     }
@@ -42,6 +64,7 @@ var Book = React.createClass({
 
     handleClick: function () {
         this.props.onBookSelected(this.props.title);
+        return false;
     },
 
     render: function () {
