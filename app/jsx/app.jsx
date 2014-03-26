@@ -114,7 +114,12 @@ var data = [
     {
         name: 'Friedrich Nietzsche',
         imgSrc: 'friedrich-nietzsche.jpg',
-        books: ['Thus Spake Zarathustra', 'Ecce Homo', 'Beyond Good and Evil', 'Twilight of the Idols']
+        books: [
+            'Thus Spake Zarathustra',
+            'Ecce Homo',
+            'Beyond Good and Evil',
+            'Twilight of the Idols'
+        ]
     },
     {
         name: 'William Shakespeare',
@@ -130,7 +135,11 @@ var data = [
     {
         name: 'Mark Twain',
         imgSrc: 'mark-twain.jpg',
-        books: ['Huckleberry Finn', 'Tom Sawyer', 'A Conecticut Yankee at King Arthur\'s Court']
+        books: [
+            'Huckleberry Finn',
+            'Tom Sawyer',
+            'A Connecticut Yankee at King Arthur\'s Court'
+        ]
     }
 ];
 
