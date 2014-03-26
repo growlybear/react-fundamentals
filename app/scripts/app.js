@@ -13,7 +13,8 @@ var Quiz = React.createClass({displayName: 'Quiz',
     },
 
     handleBookSelected: function (title) {
-        alert(title + ' clicked!');
+        var isCorrect = this.state.checkAnswer(title);
+        alert(isCorrect);
     },
 
     render: function() {
@@ -123,7 +124,12 @@ data.init = function () {
             return author.books.some(function (title) {
                 return title === answer;
             });
-        })
+        }),
+        checkAnswer: function (title) {
+            return this.author.books.some(function (t) {
+                return t === title;
+            })
+        }
     };
 };
 
