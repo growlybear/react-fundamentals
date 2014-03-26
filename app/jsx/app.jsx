@@ -12,6 +12,10 @@ var Quiz = React.createClass({
         return this.props.data.init();
     },
 
+    handleBookSelected: function (title) {
+        alert(title + ' clicked!');
+    },
+
     render: function() {
         return (
             <div className="row">
@@ -20,7 +24,7 @@ var Quiz = React.createClass({
                 </div>
                 <div className="col-md-7">
                     { this.state.books.map(function (book) {
-                        return <Book title={ book } />
+                        return <Book title={ book } onBookSelected={ this.handleBookSelected } />
                     }, this )}
                 </div>
                 <div className="col-md-1"></div>
@@ -35,9 +39,13 @@ var Book = React.createClass({
         title: React.PropTypes.string.isRequired
     },
 
+    handleClick: function () {
+        this.props.onBookSelected(this.props.title);
+    },
+
     render: function () {
         return (
-            <a href="#" className="bg-info title">{ this.props.title }</a>
+            <a href="#" onClick={ this.handleClick } className="bg-info title">{ this.props.title }</a>
         );
     }
 });

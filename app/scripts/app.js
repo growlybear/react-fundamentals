@@ -12,6 +12,10 @@ var Quiz = React.createClass({displayName: 'Quiz',
         return this.props.data.init();
     },
 
+    handleBookSelected: function (title) {
+        alert(title + ' clicked!');
+    },
+
     render: function() {
         return (
             React.DOM.div( {className:"row"}, 
@@ -20,7 +24,7 @@ var Quiz = React.createClass({displayName: 'Quiz',
                 ),
                 React.DOM.div( {className:"col-md-7"}, 
                      this.state.books.map(function (book) {
-                        return Book( {title: book } )
+                        return Book( {title: book,  onBookSelected: this.handleBookSelected } )
                     }, this )
                 ),
                 React.DOM.div( {className:"col-md-1"})
@@ -35,9 +39,13 @@ var Book = React.createClass({displayName: 'Book',
         title: React.PropTypes.string.isRequired
     },
 
+    handleClick: function () {
+        this.props.onBookSelected(this.props.title);
+    },
+
     render: function () {
         return (
-            React.DOM.a( {href:"#", className:"bg-info title"},  this.props.title )
+            React.DOM.a( {href:"#", onClick: this.handleClick,  className:"bg-info title"},  this.props.title )
         );
     }
 });
