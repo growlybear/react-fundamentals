@@ -28,6 +28,10 @@ var Quiz = React.createClass({
         this.setState(this.getInitialState());
     },
 
+    handleNewQuiz: function () {
+        routie('add');
+    },
+
     render: function() {
         return (
             <div className="row">
@@ -44,7 +48,9 @@ var Quiz = React.createClass({
                             return <Book title={ book } onBookSelected={ this.handleBookSelected } />
                         }, this )
                     }
-                    <button type="button" className="btn btn-default pull-right">Create Quiz</button>
+                    <button type="button" className="btn btn-default pull-right"
+                        onClick={ this.handleNewQuiz }>Create Quiz
+                    </button>
 
                 </div>
 
@@ -79,6 +85,64 @@ var Book = React.createClass({
     render: function () {
         return (
             <a href="#" onClick={ this.handleClick } className="bg-info title">{ this.props.title }</a>
+        );
+    }
+});
+
+var QuizCreator = React.createClass({
+
+    getDefaultProps: function () {
+        return {
+            fields: [
+                { ref: 'imageSrc', placeholder: 'Image Source' },
+                { ref: 'title1',   placeholder: 'Book Title 1' },
+                { ref: 'title2',   placeholder: 'Book Title 2' },
+                { ref: 'title3',   placeholder: 'Book Title 3' },
+                { ref: 'title4',   placeholder: 'Book Title 4' }
+            ]
+        };
+    },
+
+    handleSubmit: function () {
+        var data = getRefs(this);
+        return false;
+    },
+
+    render: function () {
+        return (
+            <div className="row">
+                <div className="col-md-12">
+                    <h2 className="formHeader">Create New Quiz</h2>
+
+                    <form role="form" onSubmit={ this.handleSubmit }>
+                        {
+                            this.props.fields.map(function (field) {
+                                return <InfoItem data={ field } />;
+                            }, this)
+                        }
+
+                        <div className="form-group">
+                            <input ref="mike" type="text" className="form-control"
+                                placeholder="Just a placeholder"
+                            />
+                        </div>
+
+                        <button type="submit" className="btn btn-default">Submit</button>
+                    </form>
+                </div>
+            </div>
+        );
+    }
+});
+
+var InfoItem = React.createClass({
+    render: function () {
+        return (
+            <div className="form-group">
+                <input ref={ this.props.data.ref } type="text" className="form-control"
+                    placeholder={ this.props.data.placeholder }
+                />
+            </div>
         );
     }
 });
@@ -174,11 +238,31 @@ data.init = function () {
     };
 };
 
+function getRefs(component) {
+    var results = {};
+    console.log(component);
+    console.log('============= 1 =============');
+    console.log(_.keys(component.refs));
+    console.log('============= 2 =============');
+    console.log(Object.keys(component.refs));
+
+    return false;
+    _.each(_.keys(component), function (item) {
+        console.log(item);
+    });
+}
+
 // Initialise the app in the default route
 routie({
     '': function () {
         React.renderComponent(
             <Quiz data={ data } />,
+            document.getElementById('app')
+        );
+    },
+    'add': function () {
+        React.renderComponent(
+            <QuizCreator />,
             document.getElementById('app')
         );
     }

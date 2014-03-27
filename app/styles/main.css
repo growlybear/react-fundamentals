@@ -61,3 +61,7 @@ body {
 .fail {
   background-color: red;
 }
+
+.formHeader {
+  margin-bottom: 25px;
+}
